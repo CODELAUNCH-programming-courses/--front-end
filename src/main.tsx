@@ -5,6 +5,6 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <h1>Hello CoudeLaunch</h1>
+    <h1>Hello CodeLaunch</h1>
   </StrictMode>
 );
