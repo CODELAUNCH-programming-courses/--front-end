@@ -1,10 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
 
-import "./index.css";
+import { router } from 'src/routes/router'
 
-createRoot(document.getElementById("root")!).render(
+import './index.css'
+
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <h1>Hello CodeLaunch</h1>
-  </StrictMode>
-);
+    <RouterProvider router={router} />
+  </StrictMode>,
+)
