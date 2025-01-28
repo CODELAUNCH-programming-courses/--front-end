@@ -8,6 +8,6 @@ interface Props {
   className?: string
 }
 
-export const Home: React.FC<Props> = () => {
+export const HomePage: React.FC<Props> = () => {
   return <div className={styles.wrap}>Home page</div>
 }
