@@ -9,5 +9,6 @@ interface Props {
 }
 
 export const HomePage: React.FC<Props> = () => {
+  console.log('HomePage rendered')
   return <div className={styles.wrap}>Home page</div>
 }

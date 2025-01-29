@@ -1,2 +1,25 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+}
+.userNvigate {
+  display: flex;
+  margin-right: 1rem;
+  gap: 2rem;
+}
+.LogoName {
+  margin: 0;
+}
+.LogoName {
+  font-size: larger;
+  margin-left: 2rem;
+}
+.LogoNameSecondHalf {
+  color: #0be0b8;
 }

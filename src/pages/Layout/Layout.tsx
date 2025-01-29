@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import { Outlet } from 'react-router-dom'
-
+import { Footer } from './components'
 import { Header } from './components'
 
 import styles from './Layout.module.css'
@@ -13,7 +13,7 @@ export const Layout: React.FC = () => {
       <main>
         <Outlet />
       </main>
-      <footer>Footer</footer>
+      <Footer className={styles.footer}></Footer>
     </div>
   )
 }
