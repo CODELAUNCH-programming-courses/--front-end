@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { Layout, HomePage, Subscribe, Profile } from 'src/pages'
+import { Layout, HomePage, Subscribe, Profile, Curses } from 'src/pages'
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Curses />,
       },
       {
         path: 'subscribe',
@@ -18,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />,
+      },
+      {
+        path: '/homepage',
+        element: <HomePage />,
       },
     ],
   },

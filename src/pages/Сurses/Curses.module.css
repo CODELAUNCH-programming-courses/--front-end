@@ -12,3 +12,13 @@
   color: #fff;
   padding: 30px;
 }
+.colorText {
+  color: #0fcfac;
+  text-align: center;
+}
+.firstLevel {
+  color: #0fcfac;
+}
+.firstLevelUnderText {
+  color: #c0c0c0;
+}

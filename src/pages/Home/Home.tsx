@@ -10,5 +10,11 @@ interface Props {
 
 export const HomePage: React.FC<Props> = () => {
   console.log('HomePage rendered')
-  return <div className={styles.wrap}>Home page</div>
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.textSpace}>
+        <h1>Що тебе цікавить</h1>
+      </div>
+    </div>
+  )
 }

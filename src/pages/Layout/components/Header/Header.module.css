@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
 
-  position: fixed;
   top: 0;
   left: 0;
   height: 60px;
@@ -11,13 +10,14 @@
 .userNvigate {
   display: flex;
   margin-right: 1rem;
+  font-size: 1.1rem;
   gap: 2rem;
 }
 .LogoName {
   margin: 0;
 }
 .LogoName {
-  font-size: larger;
+  font-size: 1.8rem;
   margin-left: 2rem;
 }
 .LogoNameSecondHalf {
