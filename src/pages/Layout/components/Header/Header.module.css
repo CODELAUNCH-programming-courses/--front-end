@@ -8,11 +8,13 @@
   width: 100%;
 }
 .userNvigate {
+  padding-top: 1rem;
   display: flex;
   margin-right: 1rem;
   font-size: 1.1rem;
   gap: 2rem;
 }
+
 .LogoName {
   margin: 0;
 }

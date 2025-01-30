@@ -20,7 +20,9 @@ export const Header: React.FC<Props> = ({ className }) => {
       <div className={styles.userNvigate}>
         <Link to={firstLink.path}>{firstLink.text}</Link>
         <Link to='/subscribe'>Підписка</Link>
-        <Link to='/profile'>Особистий Кабінет</Link>
+        <div className={styles.profile}>
+          <Link to='/profile'>Особистий Кабінет</Link>
+        </div>
       </div>
     </div>
   )
