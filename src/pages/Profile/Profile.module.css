@@ -1,0 +1,38 @@
+.profile {
+  display: flex;
+  justify-content: center;
+}
+.form {
+  width: 20rem;
+  height: 25rem;
+  border-radius: 0.3rem;
+  background-color: #2d2d33;
+  backdrop-filter: blur(20px);
+  padding: 1rem;
+}
+.mb3 {
+  padding-bottom: 1rem;
+}
+.mb3 input {
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.2rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  font-size: 16px;
+  color: #fff;
+}
+.registretionText {
+  text-align: center;
+  font-size: 1.6rem;
+}
+.btnLogIn {
+  font-size: larger;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  color: #fff;
+  background-color: #0a9c81;
+}

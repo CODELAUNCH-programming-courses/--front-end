@@ -5,5 +5,9 @@ interface Props {
 }
 
 export const Subscribe: React.FC<Props> = ({ className }) => {
-  return <div className={styles.Name}>Subscribe</div>
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.textSpace}></div>
+    </div>
+  )
 }

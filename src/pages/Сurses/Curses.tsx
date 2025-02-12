@@ -13,6 +13,9 @@ export const Curses: React.FC<Props> = ({ className }) => {
         <p className={styles.colorText}>Тут ви зможете вивчити всю нашу програму навчання</p>
         <h1 className={styles.firstLevel}>Початковий рівень</h1>
         <p className={styles.firstLevelUnderText}>Необхідна база для навчання.</p>
+        <h1 className={styles.firstLevel}>Продвинутий рівень </h1>
+        <p>Цих знань хватить для написання 50% проектів</p>
+        <h1 className={styles.firstLevel}>Мастер клас</h1>
       </div>
     </div>
   )

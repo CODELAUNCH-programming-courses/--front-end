@@ -14,9 +14,11 @@ export const Header: React.FC<Props> = ({ className }) => {
     <div className={styles.header}>
       <div>
         <h1 className={styles.LogoName}>
+          <img src='/vite.svg' alt='Vite Logo' />
           Code<span className={styles.LogoNameSecondHalf}>Launch</span>
         </h1>
       </div>
+
       <div className={styles.userNvigate}>
         <Link to={firstLink.path}>{firstLink.text}</Link>
         <Link to='/subscribe'>Підписка</Link>

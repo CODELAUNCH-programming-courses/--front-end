@@ -1,0 +1,14 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  min-height: 100vh;
+}
+.textSpace {
+  width: 70rem;
+  background-color: #2d2d33; /* Прозорий фон */
+  backdrop-filter: blur(20px);
+  border-radius: 0.6rem;
+  color: #fff;
+  padding: 30px;
+}

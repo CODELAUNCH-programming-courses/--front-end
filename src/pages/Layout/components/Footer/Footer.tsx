@@ -12,6 +12,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
       {' '}
       <div className={styles.container}>
         <h1 className={styles.LogoName}>
+          <img src='/vite.svg' alt='Vite Logo' />
           Code<span className={styles.LogoNameSecondHalf}>Lunch</span>
         </h1>{' '}
         <div className={styles.links}>
