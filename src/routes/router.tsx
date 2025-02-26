@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { Layout, HomePage, Subscribe, Profile, Curses } from 'src/pages'
+import { Layout, HomePage, Subscribe, Profile, Curses, SignUp } from 'src/pages'
 
 export const router = createBrowserRouter([
   {
@@ -9,19 +9,23 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Curses />,
+        element: <HomePage />,
       },
       {
-        path: 'subscribe',
+        path: '/subscribe',
         element: <Subscribe />,
       },
       {
-        path: 'profile',
+        path: '/profile',
         element: <Profile />,
       },
       {
-        path: '/homepage',
-        element: <HomePage />,
+        path: '/curses',
+        element: <Curses />,
+      },
+      {
+        path: '/singUp',
+        element: <SignUp />,
       },
     ],
   },

@@ -1,12 +1,12 @@
 import React from 'react'
-import styles from './Profile.module.css'
 import { Link } from 'react-router-dom'
+import styles from './SignUp.module.css'
 
 interface Props {
   className?: string
 }
 
-export const Profile: React.FC<Props> = ({ className }) => {
+export const SignUp: React.FC<Props> = ({ className }) => {
   return (
     <div className={styles.profile}>
       <div className={styles.logoSpace}>
@@ -30,9 +30,9 @@ export const Profile: React.FC<Props> = ({ className }) => {
           </button>
         </form>
         <p>
-          Ще не маєш акаунта{' '}
-          <Link className={styles.singLink} to='/singUp'>
-            Зареєструватися
+          Вже маєш{' '}
+          <Link className={styles.logInLink} to='/profile'>
+            акаунт
           </Link>
         </p>
       </div>

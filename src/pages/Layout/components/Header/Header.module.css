@@ -17,11 +17,20 @@
 
 .LogoName {
   margin: 0;
-}
-.LogoName {
+  padding-top: 0.4rem;
   font-size: 1.8rem;
-  margin-left: 2rem;
 }
 .LogoNameSecondHalf {
   color: #0be0b8;
+}
+
+.logoImage {
+  width: 3rem;
+  height: 3rem;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
 }

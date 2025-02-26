@@ -22,11 +22,11 @@ a {
 
 body {
   margin: 0;
-
+  background-color: #1f2026;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #1f2026;
   color: #ffffff;
+  z-index: -1;
 }
 
 @media (prefers-color-scheme: light) {

@@ -11,10 +11,12 @@ export const Footer: React.FC<Props> = ({ className }) => {
     <div className={styles.footer}>
       {' '}
       <div className={styles.container}>
-        <h1 className={styles.LogoName}>
-          <img src='/vite.svg' alt='Vite Logo' />
-          Code<span className={styles.LogoNameSecondHalf}>Lunch</span>
-        </h1>{' '}
+        <Link to='/' className={styles.logoLink}>
+          <img src='/logo.svg' alt='Logo' className={styles.logoImage} />
+          <h1 className={styles.LogoName}>
+            Code<span className={styles.LogoNameSecondHalf}>Lunch</span>
+          </h1>{' '}
+        </Link>
         <div className={styles.links}>
           <div className={styles.globalLinks}>
             <li className={styles.globalLinksText}>Загальні силки</li>

@@ -53,3 +53,14 @@
 .footerName {
   font-size: 0.9rem;
 }
+
+.logoImage {
+  width: 3rem;
+  height: 3rem;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
