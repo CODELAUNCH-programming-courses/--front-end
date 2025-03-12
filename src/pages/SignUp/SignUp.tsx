@@ -26,7 +26,7 @@ export const SignUp: React.FC<Props> = ({ className }) => {
           <br />
           <button className={styles.btnLogIn} type='submit'>
             {' '}
-            ВВІЙТИ
+            Зареєструватися
           </button>
         </form>
         <p>

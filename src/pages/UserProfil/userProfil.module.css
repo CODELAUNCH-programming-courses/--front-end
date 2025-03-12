@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  min-height: 70vh;
+}
+.infospace {
+  display: flex;
+}
+.lefSideBar {
+  width: 15rem;
+  background-color: #2d2d33;
+  backdrop-filter: blur(20px);
+  border-radius: 0.6rem 0rem 0rem 0.6rem;
+  color: #fff;
+
+  border-right: 1px solid #424246;
+}
+.rightSideInfo {
+  width: 50rem;
+  background-color: #2d2d33;
+  backdrop-filter: blur(20px);
+  border-radius: 0rem 0.6rem 0.6rem 0rem;
+  color: #fff;
+  padding: 30px;
+}
+.icon {
+  cursor: pointer;
+  padding: 1rem 0 1rem 1rem;
+}
+.icon:hover {
+  color: #0fcfac;
+}
+
+.defaultImage {
+  margin-left: 2rem;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 10rem;
+}
+
+.text_flex {
+  display: flex;
+  width: 100%;
+  padding: 0.4rem 0rem 0rem 0.4rem;
+  align-items: center;
+}
+/* .navigate {
+  width: 100%;
+  border: 1px solid #424246;
+} */
