@@ -1,26 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './userProfil.module.css'
 import { Settings, Keyboard, LogOut, LayoutDashboard, Flame, PanelsRightBottom, Zap } from 'lucide-react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 interface Props {
   className?: string
 }
 
 export const UserProfil: React.FC<Props> = ({ className }) => {
+  const navigate = useNavigate()
+  const [userEmail, setUserEmail] = useState<string>('')
+  const [userId, setUserId] = useState<string>('')
   const [searchParams] = useSearchParams()
   const mode = searchParams.get('mode')
   console.log('mode:', mode)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const email = localStorage.getItem('email')
+    const id = localStorage.getItem('id')
+    if (!token) {
+      navigate('/signUp')
+    }
+    if (email) {
+      setUserEmail(email)
+    }
+    if (id) {
+      setUserId(id)
+    }
+  }, [navigate])
 
   return (
     <div className={styles.container}>
       <div className={styles.infospace}>
         <div className={styles.lefSideBar}>
           <div className={styles.topIcons}>
-            <Settings className={styles.icon} size={24} />
-            <Keyboard className={styles.icon} size={24} />
-            <LogOut className={styles.icon} size={24} />
+            <Link to='?mode=settings'>
+              <Settings className={styles.icon} size={24} />
+            </Link>
+            <Link to='?mode=keyboard'>
+              <Keyboard className={styles.icon} size={24} />
+            </Link>
+            <Link to='/'>
+              <LogOut className={styles.icon} size={24} />
+            </Link>
           </div>
           <img src='/default_user.png' className={styles.defaultImage} alt='' />
+          <p className={styles.userEmail}>{userEmail}</p>
+          <p className={styles.userId}> user_{userId}</p>
           <div className={styles.navigate}>
             <Link to='?mode=home' className={styles.text_flex}>
               <LayoutDashboard className={styles.dashbord} />
@@ -48,10 +74,32 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
         </div>
 
         <div className={styles.rightSideInfo}>
+          {mode === 'settings' && <p> settings</p>}
           {mode === 'home' && <p>Home</p>}
-          {mode === 'intensity' && <p>intensity</p>}
-          {mode === 'projects' && <p>projects</p>}
-          {mode === 'courses' && <p>courses</p>}
+          {mode === 'intensity' && (
+            <>
+              <h1 className={styles.textOfintensity}>Інтенсиви</h1>
+              <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
+                Тут ви швидко зможете вивчити любу технологію
+              </p>
+            </>
+          )}
+          {mode === 'projects' && (
+            <>
+              <h1 className={styles.textOfintensity}>Проєкти</h1>
+              <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
+                Тут ви побачете як створюються проєкти з нуля
+              </p>
+            </>
+          )}
+          {mode === 'courses' && (
+            <>
+              <h1 className={styles.textOfintensity}>Мастер-класи</h1>
+              <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
+                Тут ви знайдете цінні знання які, пригодяться для вашого проєкту
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>

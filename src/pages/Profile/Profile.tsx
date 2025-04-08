@@ -1,27 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Profile.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface Props {
   className?: string
 }
 
 export const Profile: React.FC<Props> = ({ className }) => {
+  const navigate = useNavigate()
+  const [error, setError] = useState<string | null>(null)
+  async function handleForm(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const data = new FormData(form)
+    const formObject = Object.fromEntries(data.entries())
+    console.log(formObject)
+    try {
+      const res = await fetch('http://localhost:3004/api/v1/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formObject.email,
+          password: formObject.password,
+        }),
+      })
+      const { data, message, status } = await res.json()
+      if (status === 'success') {
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('id', data.user.id)
+        localStorage.setItem('email', data.user.email)
+        navigate('/userProfil?mode=home')
+      } else {
+        setError(message || 'Помилка при логінові')
+      }
+    } catch (err) {
+      setError('Помилка підключення до сервера')
+    }
+  }
   return (
     <div className={styles.profile}>
-      <div className={styles.logoSpace}>
-        <img className={styles.logoImage} src='logo.svg' alt='Logo' />
-      </div>
       <div className={styles.forma}>
+        <div className={styles.logoSpace}>
+          <img className={styles.logoImage} src='logo.svg' alt='Logo' />
+        </div>
         <h1 className={styles.registretionText}>
           Починай розробляти сайти <br /> за лічені секунди!
         </h1>
-        <form action=''>
+        <form onSubmit={handleForm}>
           <div className={styles.mb3}>
-            <input className={styles.email} placeholder='Email' type='email' name='' id='' />
+            <input className={styles.email} placeholder='Email' type='email' name='email' id='' />
           </div>
           <div className={styles.mb3}>
-            <input className={styles.password} placeholder='Password' type='password' name='' id='' />
+            <input className={styles.password} placeholder='Password' type='password' name='password' id='' />
           </div>
           <br />
           <button className={styles.btnLogIn} type='submit'>

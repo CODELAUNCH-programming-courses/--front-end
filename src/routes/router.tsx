@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import { Layout, HomePage, Subscribe, Profile, Curses, SignUp, UserProfil } from 'src/pages'
+import CourseLessonGetByID from 'src/pages/Сurses/components/CourseLessonGetByID'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: '/userProfil',
         element: <UserProfil />,
+      },
+      {
+        path: '/curses/:id',
+        element: <CourseLessonGetByID />,
       },
     ],
   },

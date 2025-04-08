@@ -28,6 +28,9 @@ body {
   color: #ffffff;
   z-index: -1;
 }
+a:hover {
+  color: #0fcfac;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
