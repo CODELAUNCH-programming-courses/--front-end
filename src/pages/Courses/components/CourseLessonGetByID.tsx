@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './CourseLessonGetByID.module.css'
 import { Link, useLocation } from 'react-router-dom'
@@ -57,11 +57,13 @@ export default function CourseLessonGetByID() {
         <p>{course.description}</p>
         <div className={styles.curseContainer}>
           <div className={styles.lessons}>
-            {course.lessons.map((lesson: any) => (
-              <Link to={`?mode=${lesson.id}`}>{lesson.name}</Link>
+            {course.lessons.map((lesson: any, index: number) => (
+              <Link to={`?mode=${lesson.id}`}>
+                {++index}. {lesson.name}
+              </Link>
             ))}
           </div>
-          <div className={styles.lessonVideo}>{videoUrl && <VideoList video={[videoUrl]} />}</div>
+          <div className={styles.lessonVideo}>{videoUrl && <VideoList video={videoUrl} />}</div>
         </div>
       </div>
     </div>

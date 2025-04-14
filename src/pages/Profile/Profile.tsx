@@ -9,14 +9,16 @@ interface Props {
 export const Profile: React.FC<Props> = ({ className }) => {
   const navigate = useNavigate()
   const [error, setError] = useState<string | null>(null)
+
   async function handleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const data = new FormData(form)
     const formObject = Object.fromEntries(data.entries())
     console.log(formObject)
+
     try {
-      const res = await fetch('http://localhost:3004/api/v1/user/login', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -37,6 +39,7 @@ export const Profile: React.FC<Props> = ({ className }) => {
       setError('Помилка підключення до сервера')
     }
   }
+
   return (
     <div className={styles.profile}>
       <div className={styles.forma}>
