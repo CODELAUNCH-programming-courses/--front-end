@@ -74,7 +74,15 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
         </div>
 
         <div className={styles.rightSideInfo}>
-          {mode === 'settings' && <p> settings</p>}
+          {mode === 'settings' && (
+            <>
+              <h1 className={styles.settingsHeader}> Settings</h1>
+              <div className={styles.settingsInputs}>
+                <input type='text' name='' id='' />
+                <input type='text' name='' id='' />
+              </div>
+            </>
+          )}
           {mode === 'home' && <p>Home</p>}
           {mode === 'intensity' && (
             <>

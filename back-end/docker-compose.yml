@@ -15,7 +15,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   spring_app:
-    image: denysmatvieiev/learning-programming:v1
+    image: denysmatvieiev/learning-programming-backend
     container_name: learn_programming_backend
     ports:
       - '3004:3004'

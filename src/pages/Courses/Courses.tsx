@@ -33,9 +33,13 @@ export const Courses: React.FC<Props> = () => {
         <h1 className={styles.firstLevel}>Початковий рівень</h1>
         <p className={styles.firstLevelUnderText}>Необхідна база для навчання.</p>
         <div className={styles.curseContainer}>
-          {data?.data?.map((el) => (
+          {data?.data?.map((el: any) => (
             <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
-              <img src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl} alt={el.name} />
+              <img
+                src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
+                alt={el.name}
+                className={styles.cardsImage}
+              />
               <p>{el.name}</p>
               <p className={styles.courseDescription}>{el.description}</p>
             </Link>

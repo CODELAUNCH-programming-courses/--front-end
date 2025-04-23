@@ -67,3 +67,10 @@
   color: #d5d5d6;
   margin: 0rem;
 }
+.settingsHeader {
+  text-align: center;
+}
+.settingsInputs {
+  display: flex;
+  flex-direction: column;
+}
