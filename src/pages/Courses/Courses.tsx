@@ -15,14 +15,20 @@ interface Props {
 }
 
 export const Courses: React.FC<Props> = () => {
-  const { data, isError, isPending } = useGetCourses('/courses/all')
+  const { data: beginnerCourses, isError: beginnerError, isPending: beginnerPending } = useGetCourses('Beginner')
+  const {
+    data: intermediateCourses,
+    isError: intermediateError,
+    isPending: intermediatePending,
+  } = useGetCourses('Intermediate')
+  const { data: advancedCourses, isError: advancedError, isPending: advancedPending } = useGetCourses('Advanced')
 
-  if (isError) {
+  if (beginnerError || intermediateError || advancedError) {
     return <p>Server error</p>
   }
 
-  if (isPending) {
-    return <p>Is loading</p>
+  if (beginnerPending || intermediatePending || advancedPending) {
+    return <p>Loading...</p>
   }
 
   return (
@@ -33,21 +39,47 @@ export const Courses: React.FC<Props> = () => {
         <h1 className={styles.firstLevel}>Початковий рівень</h1>
         <p className={styles.firstLevelUnderText}>Необхідна база для навчання.</p>
         <div className={styles.curseContainer}>
-          {data?.data?.map((el: any) => (
+          {beginnerCourses.data.map((el: Course) => (
             <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
               <img
                 src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
                 alt={el.name}
                 className={styles.cardsImage}
               />
-              <p>{el.name}</p>
+              <p className={styles.cardsName}>{el.name}</p>
               <p className={styles.courseDescription}>{el.description}</p>
             </Link>
           ))}
         </div>
         <h1 className={styles.firstLevel}>Продвинутий рівень </h1>
         <p>Цих знань хватить для написання 50% проектів</p>
+        <div className={styles.curseContainer}>
+          {advancedCourses.data.map((el: Course) => (
+            <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
+              <img
+                src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
+                alt={el.name}
+                className={styles.cardsImage}
+              />
+              <p className={styles.cardsName}>{el.name}</p>
+              <p className={styles.courseDescription}>{el.description}</p>
+            </Link>
+          ))}
+        </div>
         <h1 className={styles.firstLevel}>Мастер клас</h1>
+        <div className={styles.curseContainer}>
+          {intermediateCourses.data.map((el: Course) => (
+            <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
+              <img
+                src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
+                alt={el.name}
+                className={styles.cardsImage}
+              />
+              <p className={styles.cardsName}>{el.name}</p>
+              <p className={styles.courseDescription}>{el.description}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   )

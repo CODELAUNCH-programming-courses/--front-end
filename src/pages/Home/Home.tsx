@@ -16,14 +16,10 @@ export const HomePage: React.FC<Props> = () => {
         <p className={styles.headText}>Клацни ліву або праву картку,щоб перейти перейти по розділу </p>
         <div className={styles.catalogCards}>
           <div className={styles.catalogCurses}>
-            <div className={styles.cardNameCurses}>
-              <p>Курси</p>
-            </div>
+            <p className={styles.cardNameCurses}>Курси</p>
           </div>
-          <div className={styles.catalogCurses}>
-            <div className={styles.cardNameTarif}>
-              <p>Тарифи</p>
-            </div>
+          <div className={styles.catalogTarif}>
+            <p className={styles.cardNameTarif}>Тарифи</p>
           </div>
         </div>
       </div>

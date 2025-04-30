@@ -78,8 +78,20 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
             <>
               <h1 className={styles.settingsHeader}> Settings</h1>
               <div className={styles.settingsInputs}>
-                <input type='text' name='' id='' />
-                <input type='text' name='' id='' />
+                <input
+                  type='text'
+                  name='changeUserEmail'
+                  placeholder='Email'
+                  className={styles.changeUserEmail}
+                  id=''
+                />
+                <input
+                  type='text'
+                  name='changeUserPassword'
+                  placeholder='Password'
+                  className={styles.changeUserPassword}
+                  id=''
+                />
               </div>
             </>
           )}

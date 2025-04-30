@@ -41,3 +41,7 @@
 .cardsImage {
   margin-left: 1rem;
 }
+
+.cardsName {
+  font-weight: bold;
+}
