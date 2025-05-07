@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from './userProfil.module.css'
-import { Settings, Keyboard, LogOut, LayoutDashboard, Flame, PanelsRightBottom, Zap } from 'lucide-react'
+import { Settings, Keyboard, LogOut, LayoutDashboard, Flame, PanelsRightBottom, Zap, Pen } from 'lucide-react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
+
 interface Props {
   className?: string
 }
@@ -11,6 +12,9 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
   const [userEmail, setUserEmail] = useState<string>('')
   const [userId, setUserId] = useState<string>('')
   const [searchParams] = useSearchParams()
+  const [avatar, setAvatar] = useState<string>('/default_user.png')
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+
   const mode = searchParams.get('mode')
   console.log('mode:', mode)
 
@@ -29,6 +33,18 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
     }
   }, [navigate])
 
+  const handleEditClick = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      const imageUrl = URL.createObjectURL(file)
+      setAvatar(imageUrl)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.infospace}>
@@ -44,7 +60,7 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
               <LogOut className={styles.icon} size={24} />
             </Link>
           </div>
-          <img src='/default_user.png' className={styles.defaultImage} alt='' />
+          <img src={avatar} className={styles.defaultImage} alt='user avatar' />
           <p className={styles.userEmail}>{userEmail}</p>
           <p className={styles.userId}> user_{userId}</p>
           <div className={styles.navigate}>
@@ -77,21 +93,30 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
           {mode === 'settings' && (
             <>
               <h1 className={styles.settingsHeader}> Settings</h1>
-              <div className={styles.settingsInputs}>
-                <input
-                  type='text'
-                  name='changeUserEmail'
-                  placeholder='Email'
-                  className={styles.changeUserEmail}
-                  id=''
-                />
-                <input
-                  type='text'
-                  name='changeUserPassword'
-                  placeholder='Password'
-                  className={styles.changeUserPassword}
-                  id=''
-                />
+              <div className={styles.editUser}>
+                <div className={styles.settingsInputs}>
+                  <input type='text' name='changeUserEmail' placeholder='Email' className={styles.changeUserEmail} />
+                  <input
+                    type='text'
+                    name='changeUserPassword'
+                    placeholder='Password'
+                    className={styles.changeUserPassword}
+                  />
+                </div>
+                <div className={styles.userEditIcon}>
+                  <img src={avatar} alt='Avatar' className={styles.userImage} />
+                  <button type='button' className={styles.btnEdit} onClick={handleEditClick}>
+                    <Pen className={styles.editIcon} />
+                  </button>
+                  <input
+                    type='file'
+                    id='file'
+                    data-testid='file-input'
+                    hidden
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                  />
+                </div>
               </div>
             </>
           )}

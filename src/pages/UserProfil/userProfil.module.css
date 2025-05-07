@@ -91,3 +91,20 @@
   border-radius: 1rem;
   border: none;
 }
+
+.editUser {
+  display: flex;
+}
+.userImage {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 10rem;
+}
+.userEditIcon {
+  position: relative;
+}
+.btnEdit {
+  position: absolute;
+  bottom: 2.6rem;
+  right: 2.9rem;
+}
