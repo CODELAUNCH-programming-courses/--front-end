@@ -15,15 +15,26 @@
 
 .lessons {
   display: flex;
-  gap: 0.1rem;
+  gap: 0.3rem;
   flex-direction: column;
 }
 
 .curseContainer {
   display: flex;
   flex-direction: row;
+
   gap: 19rem;
 }
 .curseName {
   text-align: center;
+}
+
+.lessonLink {
+  border-bottom: 2px solid #414145;
+  padding-right: 0.4rem;
+}
+
+.lessons {
+  border-right: 2px solid #414145;
+  border-top: 2px solid #414145;
 }

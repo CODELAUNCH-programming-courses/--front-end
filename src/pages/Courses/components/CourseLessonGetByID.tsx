@@ -29,7 +29,7 @@ export default function CourseLessonGetByID() {
           <div className={styles.lessons}>
             {Array.isArray(course.lessons) &&
               course.lessons.map((lesson: any, index: number) => (
-                <Link key={lesson.id} to={`?mode=${lesson.id}`}>
+                <Link key={lesson.id} className={styles.lessonLink} to={`?mode=${lesson.id}`}>
                   {index + 1}. {lesson.name}
                 </Link>
               ))}

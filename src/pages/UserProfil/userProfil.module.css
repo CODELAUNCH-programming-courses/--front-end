@@ -108,3 +108,35 @@
   bottom: 2.6rem;
   right: 2.9rem;
 }
+
+.courseCard {
+  align-items: center;
+
+  font-size: 14px;
+  padding: 1rem;
+  /* border: 1px solid #ddd; */
+  background-color: #34343a;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 8rem;
+}
+
+.curseContainer {
+  display: flex;
+
+  gap: 1rem;
+}
+.cardsImage {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border-radius: 0.25rem;
+}
+.buttonLogOut {
+  background-color: none;
+  background: none;
+}
+button {
+  background: none;
+  border: none;
+}

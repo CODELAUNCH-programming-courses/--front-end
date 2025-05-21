@@ -39,7 +39,10 @@
 }
 
 .cardsImage {
-  margin-left: 1rem;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border-radius: 0.25rem;
 }
 
 .cardsName {
