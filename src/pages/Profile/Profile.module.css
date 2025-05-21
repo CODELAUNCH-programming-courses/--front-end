@@ -58,3 +58,8 @@
 .singLink {
   color: #0a9c81;
 }
+
+.error {
+  color: red;
+  font-size: 20px;
+}

@@ -57,6 +57,7 @@ export const Profile: React.FC<Props> = ({ className }) => {
             <input className={styles.password} placeholder='Password' type='password' name='password' id='' />
           </div>
           <br />
+          {error && <p className={styles.error}>{error}</p>}
           <button className={styles.btnLogIn} type='submit'>
             {' '}
             ВВІЙТИ
