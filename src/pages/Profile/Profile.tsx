@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Profile.module.css'
 import { Link, useNavigate } from 'react-router-dom'
+import logo from 'public/logo.svg'
 
 interface Props {
   className?: string
@@ -44,7 +45,7 @@ export const Profile: React.FC<Props> = ({ className }) => {
     <div className={styles.profile}>
       <div className={styles.forma}>
         <div className={styles.logoSpace}>
-          <img className={styles.logoImage} src='logo.svg' alt='Logo' />
+          <img className={styles.logoImage} src='/logo.svg' alt='Logo' />
         </div>
         <h1 className={styles.registretionText}>
           Починай розробляти сайти <br /> за лічені секунди!

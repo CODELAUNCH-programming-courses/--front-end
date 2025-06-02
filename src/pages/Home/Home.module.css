@@ -1,26 +1,29 @@
 .wrap {
   display: flex;
   justify-content: center;
-  align-items: top;
+  align-items: flex-start; /* правильніше, ніж top */
   min-height: 100vh;
 }
+
 .textSpace {
   width: 70rem;
-  background-color: #2d2d33; /* Прозорий фон */
+  background-color: #2d2d33;
   backdrop-filter: blur(20px);
   border-radius: 0.6rem;
   color: #fff;
   padding: 30px;
 }
+
 .headText {
   text-align: center;
 }
+
 .colorText {
   color: #0fcfac;
 }
 
 .catalogCurses {
-  width: 15rem;
+  width: 25rem; /* ширший блок */
   background-color: #3e3e42;
   backdrop-filter: blur(20px);
   border-radius: 0.6rem;
@@ -30,8 +33,9 @@
   padding-bottom: 25rem;
   position: relative;
 }
+
 .catalogTarif {
-  width: 15rem;
+  width: 25rem; /* ширший блок */
   background-color: #3e3e42;
   backdrop-filter: blur(20px);
   border-radius: 0.6rem;
@@ -49,28 +53,33 @@
 }
 
 .cardNameCurses {
-  background-color: #0fcfac;
+  background-color: #9f23e8;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 1rem;
   margin: 0;
   width: 100%;
   box-sizing: border-box;
+  text-align: center;
   position: absolute;
   left: 0;
   right: 0;
-  text-align: center;
 }
+
 .cardNameTarif {
-  background-color: #0fcfac;
+  background-color: #9f23e8;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 1rem;
   margin: 0;
   width: 100%;
   box-sizing: border-box;
+  text-align: center;
   position: absolute;
   left: 0;
   right: 0;
-  text-align: center;
+}
+
+.description {
+  margin-top: 5rem;
 }

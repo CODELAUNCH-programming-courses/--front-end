@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styles from './userProfil.module.css'
-import { Settings, Keyboard, LogOut, LayoutDashboard, Flame, PanelsRightBottom, Zap, Pen } from 'lucide-react'
+import { Settings, LogOut, Pen, Flame, PanelsRightBottom, Zap } from 'lucide-react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { useGetCourses } from '../Courses/hooks/useGetCourses'
-import { Button } from 'src/components/ui'
 
 interface Props {
   className?: string
@@ -20,9 +19,13 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
   const navigate = useNavigate()
   const [userEmail, setUserEmail] = useState<string>('')
   const [userId, setUserId] = useState<string>('')
+  const [userName, setUserName] = useState<string>('') // новий стейт для UserName
   const [searchParams] = useSearchParams()
   const [avatar, setAvatar] = useState<string>('/default_user.png')
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
@@ -52,6 +55,7 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
     }
     if (id) {
       setUserId(id)
+      setUserName(`user_${id}`) // спочатку зробимо UserName із id, або можна по-іншому
     }
   }, [navigate])
 
@@ -64,6 +68,52 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file)
       setAvatar(imageUrl)
+    }
+  }
+
+  // Обробник зміни полів інпутів
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    if (name === 'changeUserEmail') {
+      setUserEmail(value)
+    }
+    if (name === 'changeUserName') {
+      setUserName(value)
+    }
+  }
+
+  // Обробник натискання кнопки "Прийняти"
+  const handleSubmit = async () => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch('http://localhost:3004/api/v1/user', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          accept: '*/*',
+        },
+        body: JSON.stringify({
+          id: Number(userId),
+          username: userName,
+          email: userEmail,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Помилка: ${response.status}`)
+      }
+
+      // Оновлюємо локально userId, якщо username змінився на user_{userId}
+      // Якщо у тебе логіка інша, можна змінити відповідно
+      setUserId(userName) // оновлюємо userId, щоб відобразити у <p>
+
+      alert('Дані успішно оновлені!')
+    } catch (err: any) {
+      setError(err.message || 'Щось пішло не так')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -83,23 +133,13 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
             <Link to='?mode=settings'>
               <Settings className={styles.icon} size={24} />
             </Link>
-            <Link to='?mode=keyboard'>
-              <Keyboard className={styles.icon} size={24} />
-            </Link>
             <button onClick={handleLogout} className={styles.logoutButton}>
-              {' '}
-              <LogOut className={`${styles.icon} ${styles.buttonLogOut}`} size={24} />{' '}
+              <LogOut className={`${styles.icon} ${styles.buttonLogOut}`} size={24} />
             </button>
           </div>
           <img src={avatar} className={styles.defaultImage} alt='user avatar' />
           <p className={styles.userEmail}>{userEmail}</p>
           <p className={styles.userId}>user_{userId}</p>
-          <div className={styles.navigate}>
-            <Link to='?mode=home' className={styles.text_flex}>
-              <LayoutDashboard className={styles.dashbord} />
-              <p>Дім</p>
-            </Link>
-          </div>
           <div className={styles.navigate}>
             <Link to='?mode=intensity' className={styles.text_flex}>
               <Flame className={styles.flame} />
@@ -126,12 +166,21 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
               <h1 className={styles.settingsHeader}>Settings</h1>
               <div className={styles.editUser}>
                 <div className={styles.settingsInputs}>
-                  <input type='text' name='changeUserEmail' placeholder='Email' className={styles.changeUserEmail} />
                   <input
                     type='text'
-                    name='changeUserPassword'
-                    placeholder='Password'
+                    name='changeUserEmail'
+                    placeholder='Email'
+                    className={styles.changeUserEmail}
+                    value={userEmail}
+                    onChange={handleInputChange}
+                  />
+                  <input
+                    type='text'
+                    name='changeUserName'
+                    placeholder='UserName'
                     className={styles.changeUserPassword}
+                    value={userName}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className={styles.userEditIcon}>
@@ -148,9 +197,15 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
                     onChange={handleFileChange}
                   />
                 </div>
+                <button className={styles.btnAplly} onClick={handleSubmit} disabled={loading}>
+                  {loading ? 'Завантаження...' : 'Прийняти'}
+                </button>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
             </>
           )}
+
+          {/* інші моди залишаються без змін */}
           {mode === 'home' && <p>Home</p>}
           {mode === 'intensity' && (
             <>
