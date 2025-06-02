@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Profile.module.css'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from 'public/logo.svg'
 
 interface Props {
   className?: string
@@ -27,15 +26,17 @@ export const Profile: React.FC<Props> = ({ className }) => {
           password: formObject.password,
         }),
       })
-      const { data, message, status } = await res.json()
-      if (status === 'success') {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('id', data.user.id)
-        localStorage.setItem('email', data.user.email)
-        navigate('/userProfil?mode=home')
-      } else {
-        setError(message || 'Помилка при логінові')
+      const { data, message } = await res.json()
+
+      if (!res.ok) {
+        throw new Error(message)
       }
+
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('id', data.user.id)
+      localStorage.setItem('email', data.user.email)
+      localStorage.setItem('tariff', data.user.tariff)
+      navigate('/userProfil?mode=home')
     } catch (err) {
       setError('Помилка підключення до сервера')
     }

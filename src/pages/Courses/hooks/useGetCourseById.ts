@@ -18,7 +18,7 @@ export const useGetCourseById = (id?: string) => {
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/courses/${id}`)
     const result = await res.json()
 
-    if (!res.ok || result.status !== 'success') {
+    if (!res.ok ) {
       throw new Error('Error loading course')
     }
 

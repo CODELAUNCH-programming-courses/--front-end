@@ -1,19 +1,36 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   spring_app:
-    image: denysmatvieiev/code-launch-backend
+    image: denysmatvieiev/code-launch-back:1.0.5
     container_name: spring_app
     ports:
       - '3004:3004'
     volumes:
+      # Прив'язуємо локальний код до контейнера
       - ./src/main/java:/app/src/main/java
       - ./src/main/resources:/app/src/main/resources
+      # Якщо вам потрібні зміни в pom.xml чи інших конфігураціях
       - ./pom.xml:/app/pom.xml
+    depends_on:
+      - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://turntable.proxy.rlwy.net:15640/postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: dkKarLfDxDEQyoxFQrXXhbfnHmAfsUDm
+      SPRING_DATASOURCE_PASSWORD: 12345678
       SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
       SPRING_JPA_HIBERNATE_DDL-AUTO: update
       SPRING_JPA_DATABASE: postgresql

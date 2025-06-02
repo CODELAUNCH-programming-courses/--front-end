@@ -30,6 +30,7 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
     localStorage.removeItem('id')
+    localStorage.removeItem('tariff')
     navigate('/')
   }
 
@@ -59,10 +60,6 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
     }
   }, [navigate])
 
-  const handleEditClick = () => {
-    fileInputRef.current?.click()
-  }
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
@@ -83,6 +80,25 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
   }
 
   // Обробник натискання кнопки "Прийняти"
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const email = localStorage.getItem('email')
+    const userNameFromStorage = localStorage.getItem('userName')
+    const id = localStorage.getItem('id')
+
+    if (!token) {
+      navigate('/signUp')
+    }
+    if (email) {
+      setUserEmail(email)
+    }
+    if (userNameFromStorage) {
+      setUserName(userNameFromStorage)
+    } else if (id) {
+      setUserName(`user_${id}`) // дефолтне ім'я
+    }
+  }, [navigate])
+
   const handleSubmit = async () => {
     setLoading(true)
     setError(null)
@@ -102,12 +118,12 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
       })
 
       if (!response.ok) {
-        throw new Error(`Помилка: ${response.status}`)
+        throw new Error('Помилка оновлення')
       }
 
-      // Оновлюємо локально userId, якщо username змінився на user_{userId}
-      // Якщо у тебе логіка інша, можна змінити відповідно
-      setUserId(userName) // оновлюємо userId, щоб відобразити у <p>
+      // Після успішного оновлення — зберігаємо в localStorage
+      localStorage.setItem('email', userEmail)
+      localStorage.setItem('userName', userName)
 
       alert('Дані успішно оновлені!')
     } catch (err: any) {
@@ -139,7 +155,7 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
           </div>
           <img src={avatar} className={styles.defaultImage} alt='user avatar' />
           <p className={styles.userEmail}>{userEmail}</p>
-          <p className={styles.userId}>user_{userId}</p>
+          <p className={styles.userId}>{userName.startsWith('user_') ? userName : `user_${userName}`}</p>
           <div className={styles.navigate}>
             <Link to='?mode=intensity' className={styles.text_flex}>
               <Flame className={styles.flame} />
@@ -184,10 +200,6 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
                   />
                 </div>
                 <div className={styles.userEditIcon}>
-                  <img src={avatar} alt='Avatar' className={styles.userImage} />
-                  <button type='button' className={styles.btnEdit} onClick={handleEditClick}>
-                    <Pen className={styles.editIcon} />
-                  </button>
                   <input
                     type='file'
                     id='file'
@@ -205,8 +217,6 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
             </>
           )}
 
-          {/* інші моди залишаються без змін */}
-          {mode === 'home' && <p>Home</p>}
           {mode === 'intensity' && (
             <>
               <h1 className={styles.textOfintensity}>Інтенсиви</h1>

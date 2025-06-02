@@ -32,16 +32,17 @@ export const SignUp: React.FC<Props> = ({ className }) => {
         body: JSON.stringify(userData),
       })
 
-      const { data, status, message } = await res.json()
+      const { data, message } = await res.json()
 
-      if (status === 'success') {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('email', data.user.email)
-        localStorage.setItem('id', data.user.id)
-        navigate('/userProfil?mode=home')
-      } else {
-        setError(message || 'Помилка при реєстрації!')
+      if (!res.ok) {
+        throw new Error(message)
       }
+
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('email', data.user.email)
+      localStorage.setItem('id', data.user.id)
+      localStorage.setItem('tariff', data.user.tariff)
+      navigate('/userProfil?mode=home')
     } catch (e) {
       setError('Сталася помилка при підключенні до сервера!')
     }

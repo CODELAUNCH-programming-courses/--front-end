@@ -4,7 +4,7 @@ export const useGetLessonVideo = (lessonId?: string) => {
   const fetchLesson = async () => {
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/lessons/${lessonId}`)
     const result = await res.json()
-    if (result.status !== 'success') throw new Error('Lesson fetch failed')
+    
     return result.data.videoUrl
   }
 

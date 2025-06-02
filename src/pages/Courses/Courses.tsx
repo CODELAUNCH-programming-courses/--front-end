@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Courses.module.css'
 import { useGetCourses } from './hooks/useGetCourses'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export interface Course {
   id: number
@@ -15,6 +17,14 @@ interface Props {
 }
 
 export const Courses: React.FC<Props> = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const tariff = localStorage.getItem('tariff')
+    if (!tariff) {
+      navigate('/subscribe')
+    }
+  }, [navigate])
+
   const { data: beginnerCourses, isError: beginnerError, isPending: beginnerPending } = useGetCourses('Beginner')
   const {
     data: intermediateCourses,
