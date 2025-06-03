@@ -25,6 +25,7 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const tariff = localStorage.getItem('tariff')
 
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -219,52 +220,71 @@ export const UserProfil: React.FC<Props> = ({ className }) => {
 
           {mode === 'intensity' && (
             <>
-              <h1 className={styles.textOfintensity}>Інтенсиви</h1>
-              <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
-                Тут ви швидко зможете вивчити любу технологію
-              </p>
-              <div className={styles.curseContainer}>
-                {beginnerCourses.data.map((el: Course) => (
-                  <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
-                    <img
-                      src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
-                      alt={el.name}
-                      className={styles.cardsImage}
-                    />
-                    <p className={styles.cardsName}>{el.name}</p>
-                    <p className={styles.courseDescription}>{el.description}</p>
-                  </Link>
-                ))}
-              </div>
+              {tariff === 'null' ? (
+                <h1>Потрібно оплатити підписку</h1>
+              ) : (
+                <>
+                  <h1 className={styles.textOfintensity}>Інтенсиви</h1>
+                  <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
+                    Тут ви швидко зможете вивчити любу технологію
+                  </p>
+                  <div className={styles.curseContainer}>
+                    {beginnerCourses.data.map((el: Course) => (
+                      <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
+                        <img
+                          src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
+                          alt={el.name}
+                          className={styles.cardsImage}
+                        />
+                        <p className={styles.cardsName}>{el.name}</p>
+                        <p className={styles.courseDescription}>{el.description}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
             </>
           )}
           {mode === 'projects' && (
             <>
-              <h1 className={styles.textOfintensity}>Проєкти</h1>
-              <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
-                Тут ви побачете як створюються проєкти з нуля
-              </p>
+              {tariff === 'null' ? (
+                <h1>Потрібно оплатити підписку</h1>
+              ) : (
+                <>
+                  <h1 className={styles.textOfintensity}>Проєкти</h1>
+                  <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
+                    Тут ви побачите як створюються проєкти з нуля
+                  </p>
+                </>
+              )}
             </>
           )}
+
           {mode === 'courses' && (
             <>
-              <h1 className={styles.textOfintensity}>Мастер-класи</h1>
-              <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
-                Тут ви знайдете цінні знання які, пригодяться для вашого проєкту
-              </p>
-              <div className={styles.curseContainer}>
-                {advancedCourses.data.map((el: Course) => (
-                  <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
-                    <img
-                      src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
-                      alt={el.name}
-                      className={styles.cardsImage}
-                    />
-                    <p className={styles.cardsName}>{el.name}</p>
-                    <p className={styles.courseDescription}>{el.description}</p>
-                  </Link>
-                ))}
-              </div>
+              {tariff === 'null' ? (
+                <h1>Потрібно оплатити підписку</h1>
+              ) : (
+                <>
+                  <h1 className={styles.textOfintensity}>Мастер-класи</h1>
+                  <p className={`${styles.textOfintensity} ${styles.anotherStyle}`}>
+                    Тут ви знайдете цінні знання які, пригодяться для вашого проєкту
+                  </p>
+                  <div className={styles.curseContainer}>
+                    {advancedCourses.data.map((el: Course) => (
+                      <Link to={`/curses/${el.id}`} key={el.id} className={styles.courseCard}>
+                        <img
+                          src={import.meta.env.VITE_API_BASE_IMG_URL + el.imageUrl}
+                          alt={el.name}
+                          className={styles.cardsImage}
+                        />
+                        <p className={styles.cardsName}>{el.name}</p>
+                        <p className={styles.courseDescription}>{el.description}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>

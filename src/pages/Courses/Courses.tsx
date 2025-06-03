@@ -20,7 +20,7 @@ export const Courses: React.FC<Props> = () => {
   const navigate = useNavigate()
   useEffect(() => {
     const tariff = localStorage.getItem('tariff')
-    if (!tariff) {
+    if (!tariff || tariff === 'null') {
       navigate('/subscribe')
     }
   }, [navigate])
