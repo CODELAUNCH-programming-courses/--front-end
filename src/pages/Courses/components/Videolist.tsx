@@ -11,6 +11,7 @@ const VideoList = ({ video }: VideoProps) => {
     <>
       <Fragment key={video}>
         <ReactPlayer
+          key={video}
           url={video}
           playIcon={<img src={playIcon} style={{ width: 50, height: 50 }} />}
           controls={true}

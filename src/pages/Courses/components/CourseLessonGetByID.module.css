@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: top;
-  min-height: 100vh;
 }
 .textSpace {
   width: 70rem;
@@ -21,9 +20,8 @@
 
 .curseContainer {
   display: flex;
-  flex-direction: row;
-
-  gap: 19rem;
+  justify-content: space-between;
+  align-items: center;
 }
 .curseName {
   text-align: center;
@@ -37,4 +35,6 @@
 .lessons {
   border-right: 2px solid #414145;
   border-top: 2px solid #414145;
+
+  align-self: flex-start;
 }

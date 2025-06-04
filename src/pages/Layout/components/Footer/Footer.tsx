@@ -8,7 +8,7 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ className }) => {
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       {' '}
       <div className={styles.container}>
         <Link to='/' className={styles.logoLink}>
@@ -19,13 +19,13 @@ export const Footer: React.FC<Props> = ({ className }) => {
         </Link>
         <div className={styles.links}>
           <div className={styles.globalLinks}>
-            <li className={styles.globalLinksText}>Загальні силки</li>
+            <p className={styles.globalLinksText}>Загальні силки</p>
             <Link to={'/education'}>Програма навчання</Link> <br />
             <Link to={'/subscribe'}>Підписка</Link> <br />
             <Link to={'/links'}>Силки</Link>
           </div>
           <div className={styles.information}>
-            <li className={styles.iformationText}>Інформація</li>
+            <p className={styles.iformationText}>Інформація</p>
             <Link to={'/agreement'}>Угода</Link>
             <br />
             <Link to={'/privacy'}>Конфіденційність</Link>
@@ -40,6 +40,6 @@ export const Footer: React.FC<Props> = ({ className }) => {
       <p className={styles.footerName}>
         Code<span className={styles.LogoNameSecondHalf}>Lunch © 2024 - 2025 All Rights Reserved</span>{' '}
       </p>
-    </div>
+    </footer>
   )
 }

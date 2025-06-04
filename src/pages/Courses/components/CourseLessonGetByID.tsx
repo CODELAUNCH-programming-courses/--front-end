@@ -15,8 +15,8 @@ export default function CourseLessonGetByID() {
   const mode = query.get('mode')
   const { data: course, isPending: isCourseLoading, isError: isCourseError } = useGetCourseById(id)
   const { videoUrl, isPending: isVideoLoading, isError: isVideoError } = useGetLessonVideo(mode || undefined)
-  console.log('course:', course)
-  console.log('mode:', mode)
+  // console.log('course:', course)
+  // console.log('mode:', mode)
   console.log('videoUrl:', videoUrl)
   if (isCourseLoading) return <div className='wrap'>Завантаження курсу...</div>
   if (isCourseError) return <div className='wrap'>Помилка при завантаженні курсу</div>

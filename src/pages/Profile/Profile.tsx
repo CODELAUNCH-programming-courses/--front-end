@@ -65,11 +65,8 @@ export const Profile: React.FC<Props> = ({ className }) => {
             ВВІЙТИ
           </button>
         </form>
-        <p>
-          Ще не маєш акаунта{' '}
-          <Link className={styles.singLink} to='/singUp'>
-            Зареєструватися
-          </Link>
+        <p className={styles.singLink}>
+          Ще не маєш акаунта <Link to='/singUp'>Зареєструватися</Link>
         </p>
       </div>
     </div>
